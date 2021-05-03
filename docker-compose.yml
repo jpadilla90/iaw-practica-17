@@ -1,0 +1,71 @@
+version: '3.4'
+##EN CONSTRUCCION. FALTA PRUEBA.
+
+# Cada servicio requiere un contenedor
+services:
+# Servicio Apache. Hacemos uso de 'build' en vez de image. Crear propio contenedor.
+# Nota: Montar a partir de https://github.com/josejuansanchez/iaw-practica-lamp
+  apache:
+    build: ./apache
+    ports:
+        - 80:80
+    networks:
+        - frontend-network
+        - backend-network
+    depends_on:
+        - mysql
+    restart: always   
+    
+ # Servicio Phpmyadmin
+  phpmyadmin:
+    # Imagen Docker
+    image: phpmyadmin
+    # Entorno empleado. Ver anexo al final del documento.
+    environment:
+        - PMA_ARBITRARY=1
+    # Redirección de puertos. 
+    ports:
+        - 8080:80
+    # Redes empleadas
+    networks:
+        - frontend-network
+        - backend-network
+    # Establecemos dependencias
+    depends_on:
+        - mysql
+    # Si hay fallo en el servicio, se reinicia.
+    restart: always
+
+    # Servicio MySQL. Esta vez usaremos variables de entorno.
+    #El volumen ./sql se usa para ejecutar un script para nuestra base de datos ubicado en la carpeta mysql
+  mysql:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - "3306:3306"
+    environment:
+        - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+        - MYSQL_DATABASE=${MYSQL_DATABASE}
+        - MYSQL_USER=${MYSQL_USER}
+        - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    volumes:
+        - mysql_data:/var/lib/mysql
+        - ./sql:/docker-entrypoint-initdb.d
+    networks:
+        - backend-network
+    restart: always
+
+# Definimos las dos redes necesarias. Ojo con la indentación
+  networks:
+    frontend-network:
+    backend-network:
+
+# Definimos los volúmenes disponibles
+volumes:    
+    mysql_data:
+
+## Anexo: sobre 'PMA' (PhpMyAdmin)##
+
+# Podemos fijar dos variables de entorno. PMA_HOST y PMA_ARBITRARY=1
+# PMA_HOST nos permite indicar el nombre del contenedor con el que quiero conectarme desde phpMyAdmin.
+# PMA_ARBITRARY=1 nos ofrecerá un cuadro de texto en el login de phpMyAdmin, indicando el nombre del contenedor al que quieres conectarte.
