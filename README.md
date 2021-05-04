@@ -79,8 +79,11 @@ El archivo de configuración que utiliza HAProxy es ``haproxy.cfg.``
 
 Localice el archivo haproxy.cfg dentro del contenedor que ejecuta el balanceo de carga y estudie los parámetros de configuración que está utilizando.
 
+![](https://i.imgur.com/mAeNAqw.png)
+Para navegar por el contendor, ha sido necesario ejecutar la consola desde /bin/sh.
 
-
+Podemos de qué se guarda log, donde se archivca el log, número de usuarios, id del proceso, user y grupo, opciones de SSL, que usa el algoritmo roundrobin...
+https://es.wikipedia.org/wiki/Planificaci%C3%B3n_Round-robin 
 
 
 **Archivos en el repositorio**
