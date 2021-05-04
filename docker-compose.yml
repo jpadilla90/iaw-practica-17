@@ -73,6 +73,7 @@ networks:
 # Definimos los volúmenes disponibles
 volumes:    
     mysql_data:
+    
 
 ## Anexo: sobre 'PMA' (PhpMyAdmin)##
 

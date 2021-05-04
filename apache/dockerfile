@@ -16,7 +16,7 @@ RUN apt install git -y \
     && cd /tmp \
     && git clone https://github.com/josejuansanchez/iaw-practica-lamp \
     && mv /tmp/iaw-practica-lamp/src/* /var/www/html \
-    && sed -i 's/localhost/sql/' /var/www/html/config.php \
+    && sed -i 's/localhost/mysql/' /var/www/html/config.php \
     && rm /var/www/html/index.html
 
 EXPOSE 80
