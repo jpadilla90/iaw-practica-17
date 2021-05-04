@@ -88,6 +88,9 @@ https://es.wikipedia.org/wiki/Planificaci%C3%B3n_Round-robin
 ![](https://i.imgur.com/ayilSy9.png)
 Con las credenciales 'stats/stats' podemos ver los datos que recoge.
 
+![](https://imgur.com/VW1rZRV)
+Y el acceso a la web. (Aparece IP diferente porque había que reparar unos errores en las rutas)
+
 
 **Archivos en el repositorio**
 ------------
