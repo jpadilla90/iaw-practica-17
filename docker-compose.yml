@@ -19,7 +19,6 @@ services:
         
   apache:
     build: ./apache
-    ports:
     networks:
         - frontend-network
         - backend-network
