@@ -3,19 +3,19 @@ version: '3.4'
 services:
   # Balanceador de carga, enlazado a mysql.
   lb:
-  build: dockercloud/haproxy
-  ports:
-    - 80:80
-    - 1936:1936
-  networks:
-  - frontend-network
-  # Los enlaces permiten que los contenedores se descubran entre sí
-  # y transfieran de manera segura información sobre un contenedor 
-  # a otro contenedor.
-  links:
-    - apache
-  volumes: 
-    - /var/rum/docker.sock:/var/run/docker.sock
+    image: dockercloud/haproxy
+    ports:
+      - 80:80
+      - 1936:1936
+    networks:
+    - frontend-network
+    # Los enlaces permiten que los contenedores se descubran entre sí
+    # y transfieran de manera segura información sobre un contenedor 
+    # a otro contenedor.
+    links:
+      - apache
+    volumes: 
+      - /var/rum/docker.sock:/var/run/docker.sock
         
   apache:
     build: ./apache
