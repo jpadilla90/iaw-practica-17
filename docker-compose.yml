@@ -8,7 +8,7 @@ services:
       - 80:80
       - 1936:1936
     networks:
-    - frontend-network
+      - frontend-network
     # Los enlaces permiten que los contenedores se descubran entre sí
     # y transfieran de manera segura información sobre un contenedor 
     # a otro contenedor.
