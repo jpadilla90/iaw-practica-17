@@ -85,6 +85,9 @@ Para navegar por el contendor, ha sido necesario ejecutar la consola desde /bin/
 Podemos de qué se guarda log, donde se archivca el log, número de usuarios, id del proceso, user y grupo, opciones de SSL, que usa el algoritmo roundrobin...
 https://es.wikipedia.org/wiki/Planificaci%C3%B3n_Round-robin 
 
+![](https://i.imgur.com/ayilSy9.png)
+Con las credenciales 'stats/stats' podemos ver los datos que recoge.
+
 
 **Archivos en el repositorio**
 ------------
