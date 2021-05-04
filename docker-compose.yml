@@ -1,10 +1,22 @@
 version: '3.4'
-##EN CONSTRUCCION. FALTA PRUEBA.
 
-# Cada servicio requiere un contenedor
 services:
-# Servicio Apache. Hacemos uso de 'build' en vez de image. Crear propio contenedor.
-# Nota: Montar a partir de https://github.com/josejuansanchez/iaw-practica-lamp
+  # Balanceador de carga, enlazado a mysql.
+  lb:
+  build: dockercloud/haproxy
+  ports:
+    - 80:80
+    - 1936:1936
+  networks:
+  - frontend-network
+  # Los enlaces permiten que los contenedores se descubran entre sí
+  # y transfieran de manera segura información sobre un contenedor 
+  # a otro contenedor.
+  links:
+    - apache
+  volumes: 
+    - /var/rum/docker.sock:/var/run/docker.sock
+        
   apache:
     build: ./apache
     ports:
@@ -56,7 +68,7 @@ services:
     restart: always
 
 # Definimos las dos redes necesarias. Ojo con la indentación
-  networks:
+networks:
     frontend-network:
     backend-network:
 

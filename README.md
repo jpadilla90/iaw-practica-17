@@ -58,6 +58,8 @@ services:
 
 <5> Es necesario montar el socket UNIX del Docker daemon (/var/run/docker.sock) para que el contenedor lb pueda comunicarse con el Docker daemon y obtener información del resto de contenedores.
 
+![](https://imgur.com/UwsGYBS)
+Configuración del grupo de seguridad.
 
 `Importante:` Tenga en cuenta que la imagen oficial de **MySQL** está preparada para permitirnos importar un script SQL con la base de datos inicial de nuestra aplicación. Para importar la base de datos de la aplicación web puede crear un volumen de tipo `bind mount` entre el directorio de su máquina local donde está el script SQL y el directorio `/docker-entrypoint-initdb.d` de la imagen oficial de MySQL. Esto hará que la primera vez que se instancie la base de datos leerá todos los archivos con extensión .sql que estén en este directorio y se ejecutarán.
 
@@ -77,11 +79,17 @@ El archivo de configuración que utiliza HAProxy es ``haproxy.cfg.``
 
 Localice el archivo haproxy.cfg dentro del contenedor que ejecuta el balanceo de carga y estudie los parámetros de configuración que está utilizando.
 
+
+
+
+
 **Archivos en el repositorio**
 ------------
-1. **README.md** Documentación.
-2. **** 
-
+1. **README.md**          Documentación.
+2. **env**                Entorno.
+3. **docker-compose.yml** Organizador de contenedores.
+4. **database.sql**       Contenido para base de datos.
+5. **dockerfile**         Archivo para la pila lamp + aplicación.
 
 **Referencias**
 ------------
