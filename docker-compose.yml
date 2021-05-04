@@ -26,25 +26,6 @@ services:
         - mysql
     restart: always   
     
- # Servicio Phpmyadmin
-  phpmyadmin:
-    # Imagen Docker
-    image: phpmyadmin
-    # Entorno empleado. Ver anexo al final del documento.
-    environment:
-        - PMA_ARBITRARY=1
-    # Redirección de puertos. 
-    ports:
-        - 8080:80
-    # Redes empleadas
-    networks:
-        - frontend-network
-        - backend-network
-    # Establecemos dependencias
-    depends_on:
-        - mysql
-    # Si hay fallo en el servicio, se reinicia.
-    restart: always
 
     # Servicio MySQL. Esta vez usaremos variables de entorno.
     #El volumen ./sql se usa para ejecutar un script para nuestra base de datos ubicado en la carpeta mysql
