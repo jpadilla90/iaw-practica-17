@@ -12,8 +12,8 @@ apt install docker docker-compose -y
 systemctl enable docker
 systemctl start docker
 
-# Lanzamos los servicios de docker-compose yml. Es necesario usar '-d' para que no se abra la terminal.
-docker-compose up -d
+# Con --scale escalamos el número de instancias de apache a 4.
+docker-compose up -d --scale apache=4 
 
 ## Para finalizar docker-compose ##
 #docker-compose down -v 
